@@ -5,6 +5,8 @@ import com.api.cnc_academy.repository.CourseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CoureseServiceImpl implements  CoureseService{
 
@@ -17,5 +19,10 @@ public class CoureseServiceImpl implements  CoureseService{
     @Override
     public Course saveCourse(Course course) {
         return courseRepo.save(course);
+    }
+
+    @Override
+    public List<Course> getCourse() {
+        return courseRepo.findAll();
     }
 }

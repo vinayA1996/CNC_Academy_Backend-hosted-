@@ -6,10 +6,7 @@ import com.api.cnc_academy.service.CoureseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("course")
@@ -32,4 +29,11 @@ public class CourseController {
 
     }
 
+    @GetMapping ("/get")
+    public ResponseEntity<?> getCourse(){
+
+        return new ResponseEntity<>(coureseService.getCourse(), HttpStatus.ACCEPTED);
+
+
+    }
 }
