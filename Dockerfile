@@ -1,9 +1,18 @@
-FROM openjdk
-WORKDIR usr/lib
-ADD ./target/cnc_academy-0.0.1-SNAPSHOT.jar /usr/lib/cnc_academy-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","cnc_academy-0.0.1-SNAPSHOT.jar"]
-#FROM openjdk:11-jdk-slim
-#COPY ./target/cnc_academy-0.0.1-SNAPSHOT.jar cnc_academy-0.0.1-SNAPSHOT.jar
-## ENV PORT=8080
-#EXPOSE 8084
+#FROM openjdk
+#WORKDIR usr/lib
+#ADD ./target/cnc_academy-0.0.1-SNAPSHOT.jar /usr/lib/cnc_academy-0.0.1-SNAPSHOT.jar
 #ENTRYPOINT ["java","-jar","cnc_academy-0.0.1-SNAPSHOT.jar"]
+
+#--------------------------------------
+FROM maven:3.6.0-jdk-11-slim AS build
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml clean package
+
+#
+# Package stage
+#
+FROM openjdk:11-jre-slim
+COPY --from=build /home/app/target/cnc_academy-0.0.1-SNAPSHOT.jar /usr/local/lib/cnc_academy-0.0.1-SNAPSHOT.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/usr/local/lib/cnc_academy-0.0.1-SNAPSHOT.jar"]
