@@ -1,6 +1,7 @@
 package com.api.cnc_academy.controller;
 
 import com.api.cnc_academy.domain.Course;
+import com.api.cnc_academy.exception.CourseALreadyExists;
 import com.api.cnc_academy.exception.CourseNotFoundExcetion;
 import com.api.cnc_academy.service.CoureseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class CourseController {
         this.coureseService = coureseService;
     }
     @PostMapping("/save")
-    public ResponseEntity<?> saveCourse(@RequestBody Course course){
+    public ResponseEntity<?> saveCourse(@RequestBody Course course) throws CourseALreadyExists {
         return new ResponseEntity<>(coureseService.saveCourse(course), HttpStatus.CREATED);
     }
     @GetMapping ("/get")

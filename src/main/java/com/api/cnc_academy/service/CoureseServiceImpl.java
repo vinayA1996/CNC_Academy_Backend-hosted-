@@ -1,6 +1,7 @@
 package com.api.cnc_academy.service;
 
 import com.api.cnc_academy.domain.Course;
+import com.api.cnc_academy.exception.CourseALreadyExists;
 import com.api.cnc_academy.exception.CourseNotFoundExcetion;
 import com.api.cnc_academy.repository.CourseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,11 @@ public class CoureseServiceImpl implements  CoureseService{
     }
 
     @Override
-    public Course saveCourse(Course course) {
+    public Course saveCourse(Course course) throws CourseALreadyExists {
+    if (courseRepo.findById(course.getId()).isPresent()){
+        throw new CourseALreadyExists();
+    }
+
         return courseRepo.save(course);
     }
 
