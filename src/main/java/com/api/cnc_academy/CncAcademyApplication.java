@@ -7,8 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootApplication
 public class CncAcademyApplication {
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(CncAcademyApplication.class, args);
