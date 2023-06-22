@@ -22,7 +22,7 @@ public class CncAcademyApplication {
 	public FilterRegistrationBean filterRegistrationBean() {
 		final CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
-		config.addAllowedOrigin("*");
+		config.addAllowedOrigin("https://cnc-academy-b0e35.web.app");
 		config.addAllowedHeader("*");
 		config.addAllowedMethod("*");
 
