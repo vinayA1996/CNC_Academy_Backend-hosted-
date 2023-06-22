@@ -10,7 +10,8 @@ RUN mvn clean package -DskipTests
 #
 # Package stage
 #
-FROM openjdk:11-jre-slim
-COPY --from=build /home/app/target/cnc_academy-0.0.1-SNAPSHOT.jar /usr/local/lib/cnc_academy-0.0.1-SNAPSHOT.jar
+FROM openjdk:11-jdk-slim
+COPY --from=build /target/cnc_academy-0.0.1-SNAPSHOT.jar demo.jar
+# ENV PORT=8080
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/cnc_academy-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","demo.jar"]
