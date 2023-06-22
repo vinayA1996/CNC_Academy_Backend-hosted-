@@ -23,11 +23,11 @@ public class CourseController {
     }
     @GetMapping ("/get")
     public ResponseEntity<?> getCourse(){
-        return new ResponseEntity<>(coureseService.getCourse(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(coureseService.getCourse(), HttpStatus.OK);
     }
     @GetMapping ("/get/{id}")
     public ResponseEntity<?> getCourse(@PathVariable int id) throws CourseNotFoundExcetion {
-        return new ResponseEntity<>(coureseService.findCourseByid(id), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(coureseService.findCourseByid(id), HttpStatus.OK);
     }
     @PutMapping("/edit")
     public ResponseEntity<?> editCourse(@RequestBody Course course) throws CourseNotFoundExcetion {
