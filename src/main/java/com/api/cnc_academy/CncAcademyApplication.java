@@ -23,9 +23,9 @@ public class CncAcademyApplication {
 		final CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
 		config.addAllowedOrigin("https://cnc-academy-b0e35.web.app");
+		config.addAllowedOrigin("http://localhost:4200");
 		config.addAllowedHeader("*");
 		config.addAllowedMethod("*");
-
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**",config);
 
